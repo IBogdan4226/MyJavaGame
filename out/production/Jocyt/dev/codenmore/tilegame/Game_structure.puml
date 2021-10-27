@@ -1,0 +1,581 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": true,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": false,
+    "hideInterfaceCalls": false, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "dev.codenmore.tilegame.Game"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1113369866 { 
+   	label=codenmore
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1431907224 { 
+   	label=tilegame
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   Background533080747[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Background</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   handler: Handler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   pic: Image [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ render(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Creature1054307936[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Creature</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   speed: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   xMove: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   yMove: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># collisionWithTile(x: int, y: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ move()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ moveX()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ moveY()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ movedown()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ restoreHealth()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ takeDamage()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Display1587402213[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Display</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   canvas: Canvas [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   height: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   title: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   width: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- createDisplay()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Entity1054307936[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Entity</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   bounds: Rectangle [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   collisionWithTileY: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   dtf: DateTimeFormatter [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   falling: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   handler: Handler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   height: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   jumping: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   now: LocalDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   width: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   x: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   y: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ checkEntityCollisions(xOffset: float, yOffset: float): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkEntityCollisionsforArrows(xOffset: float, yOffset: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkEntityCollisionsforBalls(xOffset: float, yOffset: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkIfBalls()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCollisionBounds(xOffset: float, yOffset: float): Rectangle</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+EntityManager1054307936[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)EntityManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   entities: ArrayList&lt;Entity&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   handler: Handler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   player: Player [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   renderSorter: Comparator&lt;Entity&gt; [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addEntity(e: Entity)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeEntities(e: Entity)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Game1826271727[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Game</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   bs: BufferStrategy [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   display: Display [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   g: Graphics [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gameCamera: GameCamera [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   gameState: State [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   handler: Handler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   height: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   keyManager: KeyManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   menuState: State [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   mouseManager: MouseManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   running: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   thread: Thread [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   title: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   width: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getInstance(title: String, width: int, height: int): Game</TD></TR>
+<TR><TD ALIGN="LEFT" >- init()</TD></TR>
+<TR><TD ALIGN="LEFT" >- render()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ run()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ start()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ stop()</TD></TR>
+<TR><TD ALIGN="LEFT" >- tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameCamera992717284[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameCamera</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   handler: Handler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   xOffset: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   yOffset: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ centerOn(e: Entity)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkBlackSpace()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ move(x: float, y: float)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameState507089292[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameState</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   background: Background [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   path: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   world: World [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ render(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Handler1826271727[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Handler</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   background: Background [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   game: Game [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   world: World [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ItemManager710345488[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ItemManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   handler: Handler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   items: ArrayList&lt;Items&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addItem(i: Items)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Items710345488[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Items</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   bounds: Rectangle [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   handler: Handler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   picked: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   texture: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   x: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   y: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ createNew(x: int, y: int): Items</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+KeyManager516488787[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)KeyManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   down: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   esc: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   keys: boolean[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   left: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   right: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   space: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   up: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ keyPressed(e: KeyEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ keyReleased(e: KeyEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ keyTyped(e: KeyEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MenuState507089292[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MenuState</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   background: Background [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># changeaux()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ drawEnd(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MouseManager516488787[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MouseManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   leftPressed: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   mouseX: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   mouseY: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rightPressed: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   uiManager: UIManager [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ mouseClicked(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseDragged(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseEntered(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseExited(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseMoved(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mousePressed(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseReleased(e: MouseEvent)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Player1054307936[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Player</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   GRAVITY: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   TERMINAL_VELOCITY: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   animDownLeft: Animation [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   animDownRight: Animation [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   animJumpLeft: Animation [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   animJumpRight: Animation [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   animLeft: Animation [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   animRight: Animation [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   animUp: Animation [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   shooter: Shooter [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   vertical_speed: double [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- fall()</TD></TR>
+<TR><TD ALIGN="LEFT" >- getInput()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Shooter1399125696[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Shooter</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   Arrow_Timer: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   handler: Handler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lastArrow: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   tempArrow: Arrows [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ actualShooting(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addArrow(t: Arrows)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ enableShooting()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeArrow(t: Arrows)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+State507089292[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)State</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   handler: Handler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   path: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ render(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+StaticEntity2047214116[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)StaticEntity</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UIManager2110232687[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UIManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   handler: Handler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   objects: ArrayList&lt;UIObject&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addObject(o: UIObject)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onMouseMove(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onMouseRelease(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeObject(o: UIObject)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+World533080747[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)World</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   Timer: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   entityManager: EntityManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   handler: Handler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   height: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   itemManager: ItemManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lastTime: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   level: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   player: Player [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   spawnX: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   spawnY: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tiles: int[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   timp: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   width: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Decrement(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ enableTime()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTile(x: int, y: int): Tile</TD></TR>
+<TR><TD ALIGN="LEFT" >- loadWorld(path: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ tick()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+Background533080747 -> Handler1826271727[label="handler
+[0..1]"];
+Entity1054307936 -> Creature1054307936[arrowhead=none, arrowtail=empty, dir=both];
+Entity1054307936 -> Handler1826271727[label="handler
+[0..1]"];
+Entity1054307936 -> StaticEntity2047214116[arrowhead=none, arrowtail=empty, dir=both];
+EntityManager1054307936 -> Entity1054307936[label="entities
+[0..*]"];
+EntityManager1054307936 -> Entity1054307936[label="renderSorter
+[0..1]"];
+EntityManager1054307936 -> Handler1826271727[label="handler
+[0..1]"];
+Game1826271727 -> Display1587402213[label="display
+[0..1]"];
+Game1826271727 -> GameCamera992717284[label="gameCamera
+[0..1]"];
+Game1826271727 -> Handler1826271727[label="handler
+[0..1]"];
+Game1826271727 -> KeyManager516488787[label="keyManager
+[0..1]"];
+Game1826271727 -> MouseManager516488787[label="mouseManager
+[0..1]"];
+Game1826271727 -> State507089292[label="gameState
+[0..1]"];
+Game1826271727 -> State507089292[label="menuState
+[0..1]"];
+GameCamera992717284 -> Handler1826271727[label="handler
+[0..1]"];
+GameState507089292 -> Background533080747[label="background
+[0..1]"];
+Handler1826271727 -> Background533080747[label="background
+[0..1]"];
+Handler1826271727 -> Game1826271727[label="game
+[0..1]"];
+Handler1826271727 -> World533080747[label="world
+[0..1]"];
+ItemManager710345488 -> Handler1826271727[label="handler
+[0..1]"];
+ItemManager710345488 -> Items710345488[label="items
+[0..*]"];
+Items710345488 -> Handler1826271727[label="handler
+[0..1]"];
+MenuState507089292 -> Background533080747[label="background
+[0..1]"];
+MouseManager516488787 -> UIManager2110232687[label="uiManager
+[0..1]"];
+Player1054307936 -> Shooter1399125696[label="shooter
+[0..1]"];
+Shooter1399125696 -> Handler1826271727[label="handler
+[0..1]"];
+State507089292 -> GameState507089292[arrowhead=none, arrowtail=empty, dir=both];
+State507089292 -> Handler1826271727[label="handler
+[0..1]"];
+State507089292 -> MenuState507089292[arrowhead=none, arrowtail=empty, dir=both];
+UIManager2110232687 -> Handler1826271727[label="handler
+[0..1]"];
+World533080747 -> EntityManager1054307936[label="entityManager
+[0..1]"];
+World533080747 -> Handler1826271727[label="handler
+[0..1]"];
+World533080747 -> ItemManager710345488[label="itemManager
+[0..1]"];
+World533080747 -> Player1054307936[label="player
+[0..1]"];
+    
+}
+@enduml
